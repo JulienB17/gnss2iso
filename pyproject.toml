@@ -1,0 +1,19 @@
+[project]
+name = "geodpybox"
+version = "0.1"
+description = "Toolbox for geographic & geodetic treatments"
+readme = "README.md"
+authors = [{ name ="Julien Barneoud", email='julien.barneoud@ign.fr'}]
+license = { text ="GPL-3.0 license"}
+dependencies = [
+  "pandas>=2.1.4",
+  "geopandas>=0.14.2",
+  "tqdm"
+]
+
+[project.urls]
+homepage = 'https://github.com/JulienB17/geodpybox'
+
+[build-system]
+requires = ['setuptools>=64']
+build-backend = 'setuptools.build_meta'
