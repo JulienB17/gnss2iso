@@ -45,7 +45,7 @@ from geodpybox import Station, GeographicShp
 ```
 
 <h2 id="project">📖 Project contain</h2>
-**Examples and simple use cases are provided in the `/examples` folder.**
+<b>Examples and simple use cases are provided in the `/examples` folder.</b>
 
 <h3 id="station-class"> 🎯 <b><i> Station </i> class </b></h3>
 
