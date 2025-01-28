@@ -34,7 +34,7 @@ conda env list
 ```
 3. If you want to install geodpybox as a Python package, run at the root */geodpybox*:
 ```
-pip install . [-e]
+pip install [-e] .
 ```
 > NOTE: -e option if for "editor" mode, if you plan on coding within geodpybox, so you won't have to reinstall after every change.
 
@@ -64,7 +64,7 @@ This class provides geographic tools, primarily for retrieving the **ISO country
         * default: station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
    
 ```
-> NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, 'Data'.
+> NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, [Data](#data).
 
 <h3 id="station-class"> 🎯 <b><i> Station </i> class </b></h3>
 
