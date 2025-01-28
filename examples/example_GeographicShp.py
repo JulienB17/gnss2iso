@@ -40,14 +40,14 @@ for sta in [paris, cayenne, braz, antille]:
     # * buffer=True: station is a circle with Radius = buffer [degree] --> possibly country not found '000'
     # * default: station.point included on polygon --> possibly country not found '000' (most accurate according to shapefile data)
     
-    #default dist=False: computation point including in Polygon contries
+    #default dist=True: ISO get with min distance criteria (dist=0m -> point included in the country shape geometry)
     iso = geo.get_iso(sta=sta, dist=True, get_dist=True) #dist method: most efficient & less time consuming
-    print(f"{sta.name}: {iso}") #only 
+    print(f"{sta.name}: {iso}") #only ISO code as str
     # dataframe with desired attibutes from shapefile table
     iso_df = geo.get_attr(sta=sta, attr=['NAME_LONG','ISO_A3_EH'])
     print(f"{sta.name} ({sta.lon}, {sta.lat}) : '{iso_df['ISO_A3_EH']}' --> {iso_df['NAME_LONG']}")
     
-    # distance example
+    # sta: distance to 'FRA' (France) country example
     dist = geo.get_country_ISOdist("FRA", sta=sta)
     print(f"Distance to FRA: {dist}m")
         
