@@ -45,7 +45,8 @@ from geodpybox import Station, GeographicShp
 ```
 
 <h2 id="project">📖 Project contain</h2>
-Examples and simple usage case are provided in /examples folder
+Examples and simple use cases are provided in the `/examples` folder.
+
 <h3 id="station-class"> 🎯 <b><i> Station </i> class </b></h3>
 
 This class creates a station object based on geographic or cartesian coordinates, providing attributes for position (longitude, latitude, height, and Cartesian components) and shapely point representations, along with methods to validate the station and convert between coordinate systems.
@@ -72,7 +73,7 @@ This class creates a station object based on geographic or cartesian coordinates
 ```
 
 
-<h3 id="geographic-class"> Ⓜ️ <b><i> GeographicShp </i> class </b></h3>
+<h3 id="geographic-class"> 🗺️<b><i> GeographicShp </i> class </b></h3>
 
 This class provides geographic tools, primarily for retrieving the ISO country code (from a .shp shapefile) for a specific geodetic station. It is built directly on the Station class.
 
@@ -89,6 +90,7 @@ This class provides geographic tools, primarily for retrieving the ISO country c
         * default: station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
    
 ```
+> NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, 'Data'.
 
 <h2 id="data">📖 Data</h2>
 
@@ -110,4 +112,3 @@ Technologies used in the project:
 <h2> Contacts </h2>
 
 * [Julien Barnéoud](https://www.ipgp.fr/annuaire/barneoud/)
-
