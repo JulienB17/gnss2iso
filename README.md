@@ -6,8 +6,8 @@ Toolbox for geographic &amp; geodetic treatments. **Provides the ISO country cod
 **Table of Contents**
 1. [Installation](#installation)
 1. [Project contain](#project)
-    1. [Station](#station-class)
     1. [GeographicShp](#geographic-class)
+    1. [Station](#station-class)
 1. [Data](#data)
 
 
@@ -47,6 +47,25 @@ from geodpybox import Station, GeographicShp
 <h2 id="project">📖 Project contain</h2>
 <b>Examples and simple use cases are provided in the `/examples` folder.</b>
 
+
+<h3 id="geographic-class"> 🗺️<b><i> GeographicShp </i> class </b></h3>
+
+This class provides geographic tools, primarily for retrieving the **ISO country code** (from a .shp shapefile) for a specific geodetic station. It is built directly on [Station class](#station-class).
+
+```
+     Geographic tools:
+        -find country code (3 chr)
+
+    Based on shapefile data .shp
+    
+    Several methods available to find ISO code (see self.get_iso & self.get_att methods)
+        * dist=True: based on distance btw Station & Polygon --> always iso code provided
+        * buffer=True: station is a circle with Radius = buffer [degree] --> countries not found '000'
+        * default: station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
+   
+```
+> NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, 'Data'.
+
 <h3 id="station-class"> 🎯 <b><i> Station </i> class </b></h3>
 
 This class creates a station object based on geographic or cartesian coordinates, providing attributes for position (longitude, latitude, height, and Cartesian components) and shapely point representations, along with methods to validate the station and convert between coordinate systems.
@@ -71,26 +90,6 @@ This class creates a station object based on geographic or cartesian coordinates
         - xyz2geo()
         - geo2xyz()
 ```
-
-
-<h3 id="geographic-class"> 🗺️<b><i> GeographicShp </i> class </b></h3>
-
-This class provides geographic tools, primarily for retrieving the **ISO country code** (from a .shp shapefile) for a specific geodetic station. It is built directly on the Station class.
-
-
-```
-     Geographic tools:
-        -find country code (3 chr)
-
-    Based on shapefile data .shp
-    
-    Several methods available to find ISO code (see self.get_iso & self.get_att methods)
-        * dist=True: based on distance btw Station & Polygon --> always iso code provided
-        * buffer=True: station is a circle with Radius = buffer [degree] --> countries not found '000'
-        * default: station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
-   
-```
-> NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, 'Data'.
 
 <h2 id="data">📖 Data</h2>
 
