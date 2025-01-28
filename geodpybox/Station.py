@@ -10,7 +10,7 @@ import shapely.geometry as shpg
 import logging
 logging.getLogger().setLevel(logging.INFO)
 
-#internal import
+#internal import (earth parameters)
 from geodpybox.Global import ae, fe, ee
    
 class Station:
