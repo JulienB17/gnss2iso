@@ -1,7 +1,7 @@
 <h1 align="center" id="title">geodpybox</h1>
 
 
-<p id="description">Toolbox for geographic &amp; geodetic treatments</p>
+Toolbox for geographic &amp; geodetic treatments. **Provides the ISO country code for a geodetic station of interest.**
 
 **Table of Contents**
 1. [Installation](#installation)
@@ -75,7 +75,7 @@ This class creates a station object based on geographic or cartesian coordinates
 
 <h3 id="geographic-class"> 🗺️<b><i> GeographicShp </i> class </b></h3>
 
-This class provides geographic tools, primarily for retrieving the ISO country code (from a .shp shapefile) for a specific geodetic station. It is built directly on the Station class.
+This class provides geographic tools, primarily for retrieving the **ISO country code** (from a .shp shapefile) for a specific geodetic station. It is built directly on the Station class.
 
 
 ```
