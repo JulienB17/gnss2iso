@@ -25,6 +25,7 @@ git clone https://github.com/JulienB17/gnss2iso.git
 ```
 
 <h3 id="conda-env"> Conda environment </h3>
+
 - To make the configuration easier, a conda environment is used: **gnss2iso_env.yml** env. This environments is exported as `.yml` file at the root */gnss2iso* of the repository. Ensure that **Conda** is installed on your machine. You can find the official documentation [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html).
 
 1. Create an environment from the `.yml` file: 
@@ -40,6 +41,7 @@ conda env list
 conda activate gnss2iso_env
 ```
 <h3 id="pip-install"> Install gnss2iso with <b><i> pip </b></i> </h3>
+
 To install gnss2iso as a Python package, run at the root */gnss2iso*:
 ```
 pip install [-e] .
