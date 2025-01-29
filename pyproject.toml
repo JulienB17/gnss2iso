@@ -1,5 +1,5 @@
 [project]
-name = "geodpybox"
+name = "gnss2iso"
 version = "0.1"
 description = "Toolbox for geographic & geodetic treatments"
 readme = "README.md"
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.urls]
-homepage = 'https://github.com/JulienB17/geodpybox'
+homepage = 'https://github.com/JulienB17/gnss2iso'
 
 [build-system]
 requires = ['setuptools>=64']

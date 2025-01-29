@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Example usage for geodpybox.GeographicShp class
+Example usage for gnss2iso.GeographicShp class
 
 @author: julienbarneoud
 """
 import os
-from geodpybox import Station
-from geodpybox import GeographicShp
+from gnss2iso import Station
+from gnss2iso import GeographicShp
 
 #######################################################################################
 #Example usage

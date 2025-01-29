@@ -9,7 +9,7 @@ Created on Fri Nov 26 14:55:16 2021
 from .GeographicShp import GeographicShp
 from .Station import Station
 
-__all__ = ["GeographicShp", "GeographicShp"]
+__all__ = ["GeographicShp", "Station"]
 __version__ = '0.1'
 __author__ = 'Julien Barneoud'
 

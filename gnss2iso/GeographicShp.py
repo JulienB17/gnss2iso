@@ -13,7 +13,7 @@ logging.getLogger().setLevel(logging.INFO)
 import tqdm
 
 #internal import
-from geodpybox.Station import Station
+from gnss2iso.Station import Station
 
 class GeographicShp:
     """

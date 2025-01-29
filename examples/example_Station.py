@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Example usage for geodpybox.Station class
+Example usage for gnss2iso.Station class
 
 @author: julienbarneoud
 """
-from geodpybox import Station
+from gnss2iso import Station
 #######################################################################################
 #Example usage
 #######################################################################################

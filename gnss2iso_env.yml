@@ -1,4 +1,4 @@
-name: geodpybox_env
+name: gnss2iso_env
 channels:
   - conda-forge
 dependencies:

@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+gnss2iso/GeographicShp.py
+gnss2iso/Global.py
+gnss2iso/Station.py
+gnss2iso/__init__.py
+gnss2iso.egg-info/PKG-INFO
+gnss2iso.egg-info/SOURCES.txt
+gnss2iso.egg-info/dependency_links.txt
+gnss2iso.egg-info/requires.txt
+gnss2iso.egg-info/top_level.txt

@@ -11,7 +11,7 @@ import logging
 logging.getLogger().setLevel(logging.INFO)
 
 #internal import (earth parameters)
-from geodpybox.Global import ae, fe, ee
+from gnss2iso.Global import ae, fe, ee
    
 class Station:
     

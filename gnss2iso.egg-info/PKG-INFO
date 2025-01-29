@@ -1,3 +1,16 @@
+Metadata-Version: 2.2
+Name: gnss2iso
+Version: 0.1
+Summary: Toolbox for geographic & geodetic treatments
+Author-email: Julien Barneoud <julien.barneoud@ign.fr>
+License: GPL-3.0 license
+Project-URL: homepage, https://github.com/JulienB17/gnss2iso
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas>=2.1.4
+Requires-Dist: geopandas>=0.14.2
+Requires-Dist: tqdm
+
 <h1 align="center" id="title">gnss2iso</h1>
 
 
@@ -45,7 +58,7 @@ from gnss2iso import Station, GeographicShp
 ```
 
 <h2 id="project">📖 Project contain</h2>
-<b>Examples and simple use cases are provided in the [`/examples` folder](https://github.com/JulienB17/gnss2iso/tree/master/examples).</b>
+<b>Examples and simple use cases are provided in the `/examples` folder.</b>
 
 
 <h3 id="geographic-class"> 🗺️<b><i> GeographicShp </i> class </b></h3>
