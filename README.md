@@ -5,6 +5,8 @@ Python toolbox for geographic &amp; geodetic treatments. **Provides the ISO coun
 
 **Table of Contents**
 1. [Installation](#installation)
+    1. [Conda environment](#conda-env)
+    1. [Install gnss2iso with pip](#pip-install)
 1. [Project contain](#project)
     1. [GeographicShp](#geographic-class)
     1. [Station](#station-class)
@@ -22,6 +24,7 @@ Python toolbox for geographic &amp; geodetic treatments. **Provides the ISO coun
 git clone https://github.com/JulienB17/gnss2iso.git
 ```
 
+<h3 id="conda-env"> Conda environment </h3>
 - To make the configuration easier, a conda environment is used: **gnss2iso_env.yml** env. This environments is exported as `.yml` file at the root */gnss2iso* of the repository. Ensure that **Conda** is installed on your machine. You can find the official documentation [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html).
 
 1. Create an environment from the `.yml` file: 
@@ -32,13 +35,18 @@ conda env create -f gnss2iso_env.yml
 ```
 conda env list
 ```
-3. If you want to install gnss2iso as a Python package, run at the root */gnss2iso*:
+3. Activate your new conda environment :
+```
+conda activate gnss2iso_env
+```
+<h3 id="pip-install"> Install gnss2iso with <b><i> pip </b></i> </h3>
+To install gnss2iso as a Python package, run at the root */gnss2iso*:
 ```
 pip install [-e] .
 ```
 > NOTE: -e option if for "editor" mode, if you plan on coding within gnss2iso, so you won't have to reinstall after every change.
 
-4. Now you can import gnss2iso in your python script !
+Now you can import gnss2iso in your python script !
 ```python
 # import
 from gnss2iso import Station, GeographicShp
