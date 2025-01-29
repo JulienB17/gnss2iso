@@ -55,7 +55,8 @@ from gnss2iso import Station, GeographicShp
 ```
 
 <h2 id="project">📖 Project contain</h2>
-<b>Examples and simple use cases are provided in the [examples folder](https://github.com/JulienB17/gnss2iso/tree/master/examples).</b>
+
+**Examples and simple use cases are provided in the** [examples folder](https://github.com/JulienB17/gnss2iso/tree/master/examples).
 
 
 <h3 id="geographic-class"> 🗺️<b><i> GeographicShp </i> class </b></h3>
