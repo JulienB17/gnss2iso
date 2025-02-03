@@ -10,6 +10,7 @@ Python toolbox for geographic &amp; geodetic treatments. **Provides the ISO coun
 1. [Project contain](#project)
     1. [GeographicShp](#geographic-class)
     1. [Station](#station-class)
+1. [Example](#example)
 1. [Data](#data)
 
 
@@ -77,7 +78,33 @@ This class provides geographic tools, primarily for retrieving the **ISO country
 ```
 > NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, [Data](#data).
 
-<h4> GeographicShp examples </h3>
+
+<h3 id="station-class"> 🎯 <b><i> Station </i> class </b></h3>
+
+This class creates a station object based on geographic or cartesian coordinates, providing attributes for position (longitude, latitude, height, and Cartesian components) and shapely point representations, along with methods to validate the station and convert between coordinate systems.
+
+```
+    Build a station object from its coordinates (geographic or cartesian)
+    
+    
+    Attributes:
+        - lon      : longitudes [degree] (-180,180)
+        - lon360   : longitudes [degree] (0,360)
+        - lat      : latitudes [degree] (-90,90)
+        - h        : height [m]
+        - x        : cartesian x
+        - y        : cartesian y
+        - z        : cartesian z
+        - point    : shapely point object from geographic coordinates
+        - point_xyz: shapely point object from cartesian coordinates
+        
+    Methods:
+        - valid_sta()
+        - xyz2geo()
+        - geo2xyz()
+```
+
+<h2 id="example"> ⚙️ Example </h2>
 
 1. Import library
 ```python
@@ -88,6 +115,8 @@ from gnss2iso import GeographicShp
 
 2. Build `GeographicShp`object using shapefile:
 ```python
+#path to shapefile
+file = "data/ne_10m_admin_0_map_units/ne_10m_admin_0_map_units.shp"
 #Build Geographic obj from shapefile
 geo = GeographicShp(file)
 #access Shapfile attributes as geopandas dataframe
@@ -126,32 +155,6 @@ print(f"ABMF station: ISO units code '{iso_unit_abmf['ISO_A3_EH']}' ('Guadeloupe
 #OUTPUT
 ABMF station: ISO units code 'GLP' ('Guadloupe') vs. ISO admin country code 'FRA' ('France')
 ```
-
-<h3 id="station-class"> 🎯 <b><i> Station </i> class </b></h3>
-
-This class creates a station object based on geographic or cartesian coordinates, providing attributes for position (longitude, latitude, height, and Cartesian components) and shapely point representations, along with methods to validate the station and convert between coordinate systems.
-
-```
-    Build a station object from its coordinates (geographic or cartesian)
-    
-    
-    Attributes:
-        - lon      : longitudes [degree] (-180,180)
-        - lon360   : longitudes [degree] (0,360)
-        - lat      : latitudes [degree] (-90,90)
-        - h        : height [m]
-        - x        : cartesian x
-        - y        : cartesian y
-        - z        : cartesian z
-        - point    : shapely point object from geographic coordinates
-        - point_xyz: shapely point object from cartesian coordinates
-        
-    Methods:
-        - valid_sta()
-        - xyz2geo()
-        - geo2xyz()
-```
-
 
 
 <h2 id="data">📖 Data</h2>
