@@ -22,6 +22,8 @@ print("\n   ***   {}   ***  ".format(file.split("_")[-1]))
 
 #Build Geographic obj from shapefile
 geo = GeographicShp(file)
+#access Shapfile attributes as geopandas dataframe
+attr = geo.gdf
 ## check file geometries
 ## geo.check_geometries_validity() #time consuming, apply once 1st time you open your file
 
@@ -29,10 +31,10 @@ geo = GeographicShp(file)
 paris = Station(2.33,48.8, name='paris')
 cayenne = Station(-52.365, 4.822, name='cayn')
 braz = Station(-47.878, -15.947, name='braz')
-antille = Station(-61.5275, 16.2623, name="antille")
+abmf = Station(-61.528,16.262, name='ABMF')
 
 #find sta countries ISO code in shapefile
-for sta in [paris, cayenne, braz, antille]:
+for sta in [paris, cayenne, braz, abmf]:
     #directly iso 3 characters, '000' if no country found
     
     ##### several methods available to find ISO code
@@ -44,10 +46,16 @@ for sta in [paris, cayenne, braz, antille]:
     iso = geo.get_iso(sta=sta, dist=True, get_dist=True) #dist method: most efficient & less time consuming
     print(f"{sta.name}: {iso}") #only ISO code as str
     # dataframe with desired attibutes from shapefile table
-    iso_df = geo.get_attr(sta=sta, attr=['NAME_LONG','ISO_A3_EH'])
+    iso_df = geo.get_attr(sta=sta, attr=['NAME_LONG','ISO_A3_EH']) #ISO_A3_EH default used as ISO units code
     print(f"{sta.name} ({sta.lon}, {sta.lat}) : '{iso_df['ISO_A3_EH']}' --> {iso_df['NAME_LONG']}")
     
     # sta: distance to 'FRA' (France) country example
     dist = geo.get_country_ISOdist("FRA", sta=sta)
     print(f"Distance to FRA: {dist}m")
         
+
+
+###### special attention : "unit" vs "sovereignty/admin" ISO country code
+iso_unit_abmf = geo.get_attr(sta=abmf, dist=True, attr=["ISO_A3_EH"]) #default based on units ISO code
+iso_admin_abmf = geo.get_attr(sta=sta, dist=True, attr=["ADM0_A3_US"])
+print(f"ABMF station: ISO units code '{iso_unit_abmf['ISO_A3_EH']}' ('Guadeloupe') vs. ISO admin country code '{iso_admin_abmf['ADM0_A3_US']}' ('France')")

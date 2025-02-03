@@ -77,6 +77,56 @@ This class provides geographic tools, primarily for retrieving the **ISO country
 ```
 > NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, [Data](#data).
 
+<h4> GeographicShp examples </h3>
+
+1. Import library
+```python
+# import
+from gnss2iso import Station
+from gnss2iso import GeographicShp
+```
+
+2. Build `GeographicShp`object using shapefile:
+```python
+#Build Geographic obj from shapefile
+geo = GeographicShp(file)
+#access Shapfile attributes as geopandas dataframe
+attr = geo.gdf
+```
+
+3. Create a `Station` of interest (example of [ABMF IGS station](https://webigs-rf.ign.fr/stations/ABMF)) :
+```python
+abmf = Station(-61.528,16.262, name='ABMF')
+```
+4. Get ISO from shapefile :
+```python
+iso = geo.get_iso(sta=sta, dist=True, get_dist=True) #dist method: most efficient & less time consuming
+print(f"{sta.name}: {iso}") #only ISO code as str
+
+# dataframe with desired attibutes from shapefile table
+iso_df = geo.get_attr(sta=sta, attr=['NAME_LONG','ISO_A3_EH']) #ISO_A3_EH default used as ISO units code
+print(f"{sta.name} ({sta.lon}, {sta.lat}) : '{iso_df['ISO_A3_EH']}' --> {iso_df['NAME_LONG']}")
+```
+
+```
+#OUTPUT
+ABMF: ['GLP' 0.0] #iso code + dist=0.0: station included in the country shape
+ABMF (-61.528, 16.262) : 'GLP' --> Guadeloupe
+```
+
+5. Special attention : "units" vs "sovereignty/admin" ISO country code
+
+```python
+iso_unit_abmf = geo.get_attr(sta=abmf, dist=True, attr=["ISO_A3_EH"]) #default based on units ISO code
+iso_admin_abmf = geo.get_attr(sta=sta, dist=True, attr=["ADM0_A3_US"])
+print(f"ABMF station: ISO units code '{iso_unit_abmf['ISO_A3_EH']}' ('Guadeloupe') vs. ISO admin country code '{iso_admin_abmf['ADM0_A3_US']}' ('France')")
+```
+
+```
+#OUTPUT
+ABMF station: ISO units code 'GLP' ('Guadloupe') vs. ISO admin country code 'FRA' ('France')
+```
+
 <h3 id="station-class"> 🎯 <b><i> Station </i> class </b></h3>
 
 This class creates a station object based on geographic or cartesian coordinates, providing attributes for position (longitude, latitude, height, and Cartesian components) and shapely point representations, along with methods to validate the station and convert between coordinate systems.
@@ -101,6 +151,8 @@ This class creates a station object based on geographic or cartesian coordinates
         - xyz2geo()
         - geo2xyz()
 ```
+
+
 
 <h2 id="data">📖 Data</h2>
 
