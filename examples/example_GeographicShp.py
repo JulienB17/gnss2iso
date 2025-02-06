@@ -16,7 +16,7 @@ from gnss2iso import GeographicShp
 file = "data/path/to/shp/file"
 file = "data/ne_10m_admin_0_map_units/ne_10m_admin_0_map_units.shp"
 if not os.path.isfile(file):
-    raise ValueError(f"Geographic shapefile not found. Please check path {file} or download data (ex: https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_map_units.zip")
+    raise ValueError(f"Geographic shapefile not found. Please check path {file} or download data (ex: https://www.naturalearthdata.com/downloads/10m-cultural-vectors/ -> 'Download map units'")
     
 print("\n   ***   {}   ***  ".format(file.split("_")[-1]))
 
