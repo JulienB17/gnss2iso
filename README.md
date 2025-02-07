@@ -182,7 +182,7 @@ ABMF distance to FRA: 5014362.173544413m
 
 <h2 id="dev">💻 Developer's Corner</h2>
 
-As described in the previous sections [Project contain](#project), gnss2iso consists of object-oriented Python scripts with a list of methods and attributes.
+As described in the previous sections [Project contain](#project), gnss2iso consists of **object-oriented Python scripts** with a list of methods and attributes.
 Without necessarily going through a [pip installation](#pip-install), it is also entirely possible to import the scripts directly into your projects and adapt them to your needs.
 
 The same applies if you wish to add or modify certain methods to meet your specific requirements (e.g., a new method for assigning the ISO code or adapting field/attribute names to match your shapefiles instead of those from Natural Earth).
