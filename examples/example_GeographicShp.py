@@ -55,7 +55,7 @@ for sta in [paris, cayenne, braz, abmf]:
         
 
 
-###### special attention : "unit" vs "sovereignty/admin" ISO country code
-iso_unit_abmf = geo.get_attr(sta=abmf, dist=True, attr=["ISO_A3_EH"]) #default based on units ISO code
-iso_admin_abmf = geo.get_attr(sta=sta, dist=True, attr=["ADM0_A3_US"])
-print(f"ABMF station: ISO units code '{iso_unit_abmf['ISO_A3_EH']}' ('Guadeloupe') vs. ISO admin country code '{iso_admin_abmf['ADM0_A3_US']}' ('France')")
+###### special attention : "unit" vs "sovereignty/admin" ISO country code (ABMF example)
+iso_unit = geo.get_attr(sta=abmf, dist=True, attr=["ISO_A3_EH"]) #default based on units ISO code
+iso_admin = geo.get_attr(sta=abmf, dist=True, attr=["ADM0_A3_US"])
+print(f"ABMF: ISO units code '{iso_unit['ISO_A3_EH']}' ('Guadeloupe') vs. ISO admin code '{iso_admin['ADM0_A3_US']}' ('France')")

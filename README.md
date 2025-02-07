@@ -10,8 +10,8 @@ Python toolbox for geographic &amp; geodetic treatments. **Provides the ISO coun
 1. [Project contain](#project)
     1. [GeographicShp](#geographic-class)
     1. [Station](#station-class)
-1. [Example](#example)
 1. [Data](#data)
+1. [Example](#example)
 
 
 <br/><br/>
@@ -104,6 +104,17 @@ This class creates a station object based on geographic or cartesian coordinates
         - geo2xyz()
 ```
 
+
+<h2 id="data">📖 Data</h2>
+
+Countries shapefile can be find on [Natural Earth website.](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-details/).
+Current dataset used :'units' divisions [downloadable here.](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_map_units.zip)
+<p>1. Download shapefile data on your local machine, inside */data* folder</p>
+
+<p>2. For an easier usage, you can change & use string variable "shapefile" in *src.Global.shapefile*, with correct path to '.shp' file </p>
+
+> NOTE: keep the entire folder downloaded from Natural Earth and do not move or delete files that seem useless! The . shp file has hidden dependencies with other . prj , etc. !
+
 <h2 id="example"> ⚙️ Example </h2>
 
 1. Import library
@@ -113,7 +124,7 @@ from gnss2iso import Station
 from gnss2iso import GeographicShp
 ```
 
-2. Build `GeographicShp`object using shapefile:
+2. Build `GeographicShp`object using shapefile (see [Data section](#data)):
 ```python
 #path to shapefile
 file = "data/ne_10m_admin_0_map_units/ne_10m_admin_0_map_units.shp"
@@ -129,11 +140,11 @@ abmf = Station(-61.528,16.262, name='ABMF')
 ```
 4. Get ISO from shapefile :
 ```python
-iso = geo.get_iso(sta=sta, dist=True, get_dist=True) #dist method: most efficient & less time consuming
+iso = geo.get_iso(sta=abmf, dist=True, get_dist=True) #dist method: most efficient & less time consuming
 print(f"{sta.name}: {iso}") #only ISO code as str
 
 # dataframe with desired attibutes from shapefile table
-iso_df = geo.get_attr(sta=sta, attr=['NAME_LONG','ISO_A3_EH']) #ISO_A3_EH default used as ISO units code
+iso_df = geo.get_attr(sta=abmf, attr=['NAME_LONG','ISO_A3_EH']) #ISO_A3_EH default used as ISO units code
 print(f"{sta.name} ({sta.lon}, {sta.lat}) : '{iso_df['ISO_A3_EH']}' --> {iso_df['NAME_LONG']}")
 ```
 
@@ -143,29 +154,18 @@ ABMF: ['GLP' 0.0] #iso code + dist=0.0: station included in the country shape
 ABMF (-61.528, 16.262) : 'GLP' --> Guadeloupe
 ```
 
-5. Special attention : "units" vs "sovereignty/admin" ISO country code
+5. Special attention : "units" vs "sovereignty/admin" ISO country code (ABMF example)
 
 ```python
-iso_unit_abmf = geo.get_attr(sta=abmf, dist=True, attr=["ISO_A3_EH"]) #default based on units ISO code
-iso_admin_abmf = geo.get_attr(sta=sta, dist=True, attr=["ADM0_A3_US"])
-print(f"ABMF station: ISO units code '{iso_unit_abmf['ISO_A3_EH']}' ('Guadeloupe') vs. ISO admin country code '{iso_admin_abmf['ADM0_A3_US']}' ('France')")
+iso_unit = geo.get_attr(sta=abmf, dist=True, attr=["ISO_A3_EH"]) #default based on units ISO code
+iso_admin = geo.get_attr(sta=abmf, dist=True, attr=["ADM0_A3_US"])
+print(f"ABMF: ISO units code '{iso_unit['ISO_A3_EH']}' ('Guadeloupe') vs. ISO admin code '{iso_admin['ADM0_A3_US']}' ('France')")
 ```
 
 ```
 #OUTPUT
-ABMF station: ISO units code 'GLP' ('Guadloupe') vs. ISO admin country code 'FRA' ('France')
+ABMF: ISO units code 'GLP' ('Guadeloupe') vs. ISO admin code 'FRA' ('France')
 ```
-
-
-<h2 id="data">📖 Data</h2>
-
-Countries shapefile can be find on [Natural Earth website.](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-details/).
-Current dataset used :'units' divisions [downloadable here.](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_map_units.zip)
-<p>1. Download shapefile data on your local machine, inside */data* folder</p>
-
-<p>2. For an easier usage, you can change & use string variable "shapefile" in *src.Global.shapefile*, with correct path to '.shp' file </p>
-
-> NOTE: keep the entire folder downloaded from Natural Earth and do not move or delete files that seem useless! The . shp file has hidden dependencies with other . prj , etc. !
 
 
 <h2>💻 Built with </h2>
