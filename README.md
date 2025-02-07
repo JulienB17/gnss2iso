@@ -70,10 +70,10 @@ This class provides geographic tools, primarily for retrieving the **ISO country
 
     Based on shapefile data .shp
     
-    Several methods available to find ISO code (see self.get_iso & self.get_att methods)
-        * dist=True: based on distance btw Station & Polygon --> always iso code provided
-        * buffer=True: station is a circle with Radius = buffer [degree] --> countries not found '000'
-        * default: station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
+    Several methods available to find ISO code (see get_iso() & get_att() methods)
+        * dist=True: based on distance btw Station & Polygon --> always iso code provided [default method]
+        * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: degree or meter] --> countries not found '000'
+        * else: basic station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
    
 ```
 > NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, [Data](#data).
@@ -140,17 +140,17 @@ abmf = Station(-61.528,16.262, name='ABMF')
 ```
 4. Get ISO from shapefile :
 ```python
-iso = geo.get_iso(sta=abmf, dist=True, get_dist=True) #dist method: most efficient & less time consuming
+iso = geo.get_iso(sta=sta, dist=True) #dist method: most efficient & less time consuming
 print(f"{sta.name}: {iso}") #only ISO code as str
 
 # dataframe with desired attibutes from shapefile table
-iso_df = geo.get_attr(sta=abmf, attr=['NAME_LONG','ISO_A3_EH']) #ISO_A3_EH default used as ISO units code
-print(f"{sta.name} ({sta.lon}, {sta.lat}) : '{iso_df['ISO_A3_EH']}' --> {iso_df['NAME_LONG']}")
+iso_df = geo.get_attr(sta=abmf, attr=['NAME_LONG','ISO_A3_EH'],  get_dist=True) #ISO_A3_EH default used as ISO units code, get_dist get distance btw station & country shape
+print(f"{abmf.name} ({abmf.lon}, {abmf.lat}) : '{iso_df['ISO_A3_EH']}' --> {iso_df['NAME_LONG']}; dist({abmf.name}-{iso_df['ISO_A3_EH']})={iso_df['dist']}")
 ```
 
 ```
 #OUTPUT
-ABMF: ['GLP' 0.0] #iso code + dist=0.0: station included in the country shape
+ABMF: 'GLP' #iso code + dist=0.0: station included in the country shape
 ABMF (-61.528, 16.262) : 'GLP' --> Guadeloupe
 ```
 
@@ -165,6 +165,18 @@ print(f"ABMF: ISO units code '{iso_unit['ISO_A3_EH']}' ('Guadeloupe') vs. ISO ad
 ```
 #OUTPUT
 ABMF: ISO units code 'GLP' ('Guadeloupe') vs. ISO admin code 'FRA' ('France')
+```
+
+6. Possibility to get distance between ABMF station and any ISO country code (see GeographicShp.get\_country\_ISOdist() method :
+```python
+# see ISO list available in your shapefile (attribute geo.gdf["ISO_A3_EH"] or gdf_countries["SOV_A3"])
+# distance to 'FRA' (France) country example
+dist = geo.get_country_ISOdist("FRA", sta=abmf)
+print(f"ABMF distance to FRA: {dist}m")
+```
+```
+#OUTPUT
+ABMF distance to FRA: 5014362.173544413m
 ```
 
 

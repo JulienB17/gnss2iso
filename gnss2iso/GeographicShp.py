@@ -23,9 +23,9 @@ class GeographicShp:
     Based on shapefile data .shp
     
     Several methods available to find ISO code (see self.get_iso & self.get_att methods)
-        * dist=True: based on distance btw Station & Polygon --> always iso code provided
-        * buffer=True: station is a circle with Radius = buffer [degree] --> countries not found '000'
-        * default: station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
+        * dist=True: based on distance btw Station & Polygon --> always iso code provided [default method]
+        * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: degree or meter]--> countries not found '000'
+        * else: basic station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
         
     """    
     def __init__(self, shapefile):
@@ -137,9 +137,12 @@ class GeographicShp:
             -point (shapely Point object)
             
         Several methods available to find ISO code (see self.get_iso & self.get_att methods)
-            * dist=True: based on distance btw Station & Polygon --> always iso code provided
-            * buffer=True: station is a circle with Radius = buffer [degree] --> countries not found '000'
-            * default: station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
+            * dist=True: based on distance btw Station & Polygon --> always iso code provided [default method]
+            * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: degree or meter] --> countries not found '000'
+            * else: basic station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
+            
+        if dist & get_dist : return distance between station & shape with ISO code 
+        WARNING : dist unit consistent with shapefile EPSG unit. Ex: epsg=4324 -> degree; epsg=4978 -> meter
                         
         Output(s):
             Attributs listed in 'attr'
@@ -161,7 +164,7 @@ class GeographicShp:
         dist: bool
             Select country with distance method: get country with min distance btw (point & polygon). distance=0 if point include
         get_dist: bool
-            Return dist value in dataframe
+            Return dist value in dataframe [WARNING : unit of shapefile. Ex: epsg=4324 -> degree unit; epsg=4978 -> meter unit]
 
         Returns
         -------
@@ -230,9 +233,12 @@ class GeographicShp:
             -point (shapely Point object)
             
         Several methods available to find ISO code (see self.get_iso & self.get_att methods)
-            * dist=True: based on distance btw Station & Polygon --> always iso code provided
-            * buffer=True: station is a circle with Radius = buffer [degree] --> countries not found '000'
-            * default: station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
+            * dist=True: based on distance btw Station & Polygon --> always iso code provided [default method]
+            * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: degree or meter]--> countries not found '000'
+            * else: basic station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
+            
+        if dist & get_dist : return distance between station & shape with ISO code 
+        WARNING : dist unit consistent with shapefile EPSG unit. Ex: epsg=4324 -> degree; epsg=4978 -> meter
             
         Output(s):
             Attributs listed in 'attr'
@@ -254,7 +260,7 @@ class GeographicShp:
         dist: bool
             Select country with distance method: get country with min distance btw (point & polygon). distance=0 if point include
         get_dist: bool
-            Return dist value in dataframe
+            Return dist value in dataframe [WARNING : dist unit consistent with shapefile EPSG unit. Ex: epsg=4324 -> degree; epsg=4978 -> meter]
 
 
         Returns
@@ -275,9 +281,12 @@ class GeographicShp:
     
     
     def get_country_ISOdist(self, iso, sta=None, lon=None, lat=None, epsg="4978"):
-        """ Provides distance [m] between 'iso' country & sta.
-        In case of several polygon with 'ISO' code, get minimal distance
-        Unknown ISO code: dist=-1"""
+        """ 
+        Provides distance [m] between 'iso' country & sta.
+        * distance in which epsg ? Default 4978 : WGS 84 [unit: meter]
+        * In case of several polygon with 'ISO' code, get minimal distance
+        * Unknown ISO code: dist=-1
+        """
         #create sta object
         if not bool(sta): #sta & point object not provided by user, build it from 'lon' & 'lat' attribute
             sta = Station(lon=lon, lat=lat)
