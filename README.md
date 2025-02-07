@@ -1,7 +1,7 @@
 <h1 align="center" id="title">gnss2iso</h1>
 
 
-Python toolbox for geographic &amp; geodetic treatments. **Provides the ISO country code for a geodetic station of interest.**
+Python toolbox for geographic &amp; geodetic data processing. **Provides the ISO country code for a geodetic station of interest.**
 
 **Table of Contents**
 1. [Installation](#installation)
