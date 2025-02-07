@@ -12,6 +12,7 @@ Python toolbox for geographic &amp; geodetic data processing. **Provides the ISO
     1. [Station](#station-class)
 1. [Data](#data)
 1. [Example](#example)
+1. [Developer's Corner](#dev)
 
 
 <br/><br/>
@@ -109,9 +110,8 @@ This class creates a station object based on geographic or cartesian coordinates
 
 Countries shapefile can be find on [Natural Earth website.](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-details/).
 Current dataset used :'units' divisions [downloadable here.](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_map_units.zip)
-<p>1. Download shapefile data on your local machine, inside */data* folder</p>
 
-<p>2. For an easier usage, you can change & use string variable "shapefile" in *src.Global.shapefile*, with correct path to '.shp' file </p>
+Download shapefile data on your local machine, for example inside a '/data' folder</p>
 
 > NOTE: keep the entire folder downloaded from Natural Earth and do not move or delete files that seem useless! The . shp file has hidden dependencies with other . prj , etc. !
 
@@ -138,7 +138,7 @@ attr = geo.gdf
 ```python
 abmf = Station(-61.528,16.262, name='ABMF')
 ```
-4. Get ISO from shapefile :
+4. Get ISO from shapefile (see get_iso() method):
 ```python
 iso = geo.get_iso(sta=sta, dist=True) #dist method: most efficient & less time consuming
 print(f"{sta.name}: {iso}") #only ISO code as str
@@ -150,8 +150,8 @@ print(f"{abmf.name} ({abmf.lon}, {abmf.lat}) : '{iso_df['ISO_A3_EH']}' --> {iso_
 
 ```
 #OUTPUT
-ABMF: 'GLP' #iso code + dist=0.0: station included in the country shape
-ABMF (-61.528, 16.262) : 'GLP' --> Guadeloupe
+ABMF: 'GLP' #iso code
+ABMF (-61.528, 16.262): 'GLP' --> Guadeloupe; dist(ABMF-GLP)=0.0 #dist=0: station included in the country shape
 ```
 
 5. Special attention : "units" vs "sovereignty/admin" ISO country code (ABMF example)
@@ -167,7 +167,7 @@ print(f"ABMF: ISO units code '{iso_unit['ISO_A3_EH']}' ('Guadeloupe') vs. ISO ad
 ABMF: ISO units code 'GLP' ('Guadeloupe') vs. ISO admin code 'FRA' ('France')
 ```
 
-6. Possibility to get distance between ABMF station and any ISO country code (see GeographicShp.get\_country\_ISOdist() method :
+6. Possibility to get distance between ABMF station and any ISO country code (see GeographicShp.get\_country\_ISOdist() method):
 ```python
 # see ISO list available in your shapefile (attribute geo.gdf["ISO_A3_EH"] or gdf_countries["SOV_A3"])
 # distance to 'FRA' (France) country example
@@ -180,10 +180,14 @@ ABMF distance to FRA: 5014362.173544413m
 ```
 
 
-<h2>💻 Built with </h2>
+<h2 id="dev">💻 Developer's Corner</h2>
+
+As described in the previous sections [Project contain](#project), gnss2iso consists of object-oriented Python scripts with a list of methods and attributes.
+Without necessarily going through a [pip installation](#pip-install), it is also entirely possible to import the scripts directly into your projects and adapt them to your needs.
+
+The same applies if you wish to add or modify certain methods to meet your specific requirements (e.g., a new method for assigning the ISO code or adapting field/attribute names to match your shapefiles instead of those from Natural Earth).
 
 Technologies used in the project:
-
 *   python
 
 <h2> Contacts </h2>
