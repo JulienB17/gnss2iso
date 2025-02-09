@@ -1,7 +1,7 @@
 <h1 align="center" id="title">gnss2iso</h1>
 
 
-Python toolbox for geographic &amp; geodetic data processing. **Provides the ISO country code for a geodetic station of interest.**
+Python toolbox for geographic &amp; geodetic data processing. **gnss2iso searches the ISO country code given the coordinates of a geodetic station.**
 
 **Table of Contents**
 1. [Installation](#installation)
@@ -20,7 +20,7 @@ Python toolbox for geographic &amp; geodetic data processing. **Provides the ISO
 
 <h2 id="installation">🛠️ Installation </h2>
 
-- Clone this repository to your desired place:
+- Clone this repository to your work space:
 
 ```
 git clone https://github.com/JulienB17/gnss2iso.git
@@ -28,17 +28,17 @@ git clone https://github.com/JulienB17/gnss2iso.git
 
 <h3 id="conda-env"> Conda environment </h3>
 
-- To make the configuration easier, a conda environment is used: **gnss2iso_env.yml** env. This environments is exported as `.yml` file at the root */gnss2iso* of the repository. Ensure that **Conda** is installed on your machine. You can find the official documentation [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html).
+- To make the configuration easier, a conda environment is used: **gnss2iso_env.yml** env. This environments is exported as `.yml` file at the root */gnss2iso* of the repository. Ensure that **Conda** is installed on your computer. You can find the official documentation [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html).
 
 1. Create an environment from the `.yml` file: 
 ```
 conda env create -f gnss2iso_env.yml
 ```
-2. Verify that this new environment **gnss2iso_env** is installed correctly:
+2. Check that the new environment **gnss2iso_env** is installed correctly:
 ```
 conda env list
 ```
-3. Activate your new conda environment :
+3. Activate the new conda environment :
 ```
 conda activate gnss2iso_env
 ```
@@ -48,7 +48,7 @@ To install gnss2iso as a Python package, run at the root */gnss2iso*:
 ```
 pip install [-e] .
 ```
-> NOTE: -e option if for "editor" mode, if you plan on coding within gnss2iso, so you won't have to reinstall after every change.
+> NOTE: -e option if for "editor" mode, this allows you to write code within gnss2iso without having to reinstall it after every change.
 
 Now you can import gnss2iso in your python script !
 ```python
@@ -71,10 +71,10 @@ This class provides geographic tools, primarily for retrieving the **ISO country
 
     Based on shapefile data .shp
     
-    Several methods available to find ISO code (see get_iso() & get_att() methods)
-        * dist=True: based on distance btw Station & Polygon --> always iso code provided [default method]
-        * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: degree or meter] --> countries not found '000'
-        * else: basic station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
+    Several methods are available to search for an ISO code (see get_iso() & get_att() methods)
+        * dist=True: returns the ISO code of the nearest country, whatever the distance; returns also the distance between the station and the nearest country's polygon [default method] --> always returns an ISO code
+        * buffer=True: returns the ISO code the nearest country within a circle centered on the station and with Radius = buffer [unit depends on shapefile epsg: degree or meter] --> if no country is found returns '000'
+        * otherwise: returns an ISO code only if the station is located within a polygon [most accurate method according to shapefile data] --> if no country is found returns '000' 
    
 ```
 > NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, [Data](#data).
@@ -82,7 +82,7 @@ This class provides geographic tools, primarily for retrieving the **ISO country
 
 <h3 id="station-class"> 🎯 <b><i> Station </i> class </b></h3>
 
-This class creates a station object based on geographic or cartesian coordinates, providing attributes for position (longitude, latitude, height, and Cartesian components) and shapely point representations, along with methods to validate the station and convert between coordinate systems.
+This class creates a station object based on geographic or cartesian coordinates, providing attributes for position (longitude, latitude, height, and Cartesian components) and shapely point representations, along with methods to validate the station and convert coordinates between various systems.
 
 ```
     Build a station object from its coordinates (geographic or cartesian)
@@ -108,8 +108,8 @@ This class creates a station object based on geographic or cartesian coordinates
 
 <h2 id="data">📖 Data</h2>
 
-Countries shapefile can be find on [Natural Earth website.](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-details/).
-Current dataset used :'units' divisions [downloadable here.](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_map_units.zip)
+Countries shapefiles can be found on [Natural Earth website.](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-details/).
+Current dataset uses : 'units' divisions [downloadable here.](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_map_units.zip)
 
 Download shapefile data on your local machine, for example inside a '/data' folder</p>
 
@@ -183,7 +183,7 @@ ABMF distance to FRA: 5014362.173544413m
 <h2 id="dev">💻 Developer's Corner</h2>
 
 As described in the previous sections [Project contain](#project), gnss2iso consists of **object-oriented Python scripts** with a list of methods and attributes.
-Without necessarily going through a [pip installation](#pip-install), it is also entirely possible to import the scripts directly into your projects and adapt them to your needs.
+Without necessarily going through a [pip installation](#pip-install), it is also possible to import the scripts directly into your projects and adapt them to your needs.
 
 The same applies if you wish to add or modify certain methods to meet your specific requirements (e.g., a new method for assigning the ISO code or adapting field/attribute names to match your shapefiles instead of those from Natural Earth).
 
