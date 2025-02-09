@@ -39,9 +39,9 @@ for sta in [paris, cayenne, reun, abmf]:
     #directly iso 3 characters, '000' if no country found
     
     ##### several methods available to find ISO code
-    # * dist=True: based on distance btw Station & Polygon --> always iso code provided [defaul]
-    # * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: here 4326= degree] --> possibly country not found '000'
-    # * else: basic station.point included on polygon --> possibly country not found '000' (most accurate according to shapefile data)
+    # * dist=True: shortest distance btw Station & Polygon --> always return an ISO code [default]
+    # * buffer=True: same as previous but Polygon is within a circle centered on the station with Radius = buffer [unit depends on shapefile epsg: here 4326= degree] --> possibly country not found '000'
+    # * otherswise: station must be included in Polygon --> possibly country not found '000' (most accurate according to shapefile data)
     
     #default dist=True: ISO get with min distance criteria (dist=0m -> point included in the country shape geometry)
     iso = geo.get_iso(sta=sta, dist=True) #dist method: most efficient & less time consuming
