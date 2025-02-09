@@ -1,7 +1,7 @@
 [project]
 name = "gnss2iso"
 version = "0.1"
-description = "Toolbox for geographic & geodetic treatments"
+description = "Toolbox for geographic & geodetic data handling"
 readme = "README.md"
 authors = [{ name ="Julien Barneoud", email='julien.barneoud@ign.fr'}]
 license = { text ="GPL-3.0 license"}
