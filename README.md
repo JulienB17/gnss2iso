@@ -72,10 +72,13 @@ This class provides geographic tools, primarily for retrieving the **ISO country
     Based on shapefile data .shp
     
     Several options are available to search for an ISO code with get_iso() & get_att() methods:
-        * dist=True: (default) returns the ISO code of the nearest country, whatever the distance;
-                               returns also the distance between the station and the nearest country's polygon --> always returns an ISO code
-        * buffer=True: returns the ISO code the nearest country within a circle centered on the station and with Radius = buffer [unit depends on shapefile epsg: degree or meter] --> if no country is found returns '000'
-        * otherwise: returns an ISO code only if the station is located within a polygon [most accurate method according to shapefile data] --> if no country is found returns '000' 
+        * if dist=True:    returns the ISO code of the nearest country, whatever the distance; it always returns an ISO code [default]
+        * elseif buffer>0: returns the ISO code the nearest country within a circle centered on the station and with Radius = buffer [unit depends on shapefile epsg: degree or meter]
+                           or '000' if no country is found within the circle
+        * else:            returns the ISO code of the polygon containing the station
+                           or '000' if no polygon is found
+
+        if dist=TRUE & get_dist=TRUE: returns also the distance between station & polygon
    
 ```
 > NOTE : You must have a geographic shapefile (.shp) to use GeographicShp. See the next section, [Data](#data).
