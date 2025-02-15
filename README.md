@@ -71,8 +71,9 @@ This class provides geographic tools, primarily for retrieving the **ISO country
 
     Based on shapefile data .shp
     
-    Several methods are available to search for an ISO code (see get_iso() & get_att() methods)
-        * dist=True: returns the ISO code of the nearest country, whatever the distance; returns also the distance between the station and the nearest country's polygon [default method] --> always returns an ISO code
+    Several options are available to search for an ISO code with get_iso() & get_att() methods:
+        * dist=True: (default) returns the ISO code of the nearest country, whatever the distance;
+                               returns also the distance between the station and the nearest country's polygon --> always returns an ISO code
         * buffer=True: returns the ISO code the nearest country within a circle centered on the station and with Radius = buffer [unit depends on shapefile epsg: degree or meter] --> if no country is found returns '000'
         * otherwise: returns an ISO code only if the station is located within a polygon [most accurate method according to shapefile data] --> if no country is found returns '000' 
    
@@ -138,7 +139,7 @@ attr = geo.gdf
 ```python
 abmf = Station(-61.528,16.262, name='ABMF')
 ```
-4. Get ISO from shapefile (see get_iso() method):
+4. Get ISO code and attributes from shapefile
 ```python
 iso = geo.get_iso(sta=sta, dist=True) #dist method: most efficient & less time consuming
 print(f"{sta.name}: {iso}") #only ISO code as str
@@ -154,7 +155,7 @@ ABMF: 'GLP' #iso code
 ABMF (-61.528, 16.262): 'GLP' --> Guadeloupe; dist(ABMF-GLP)=0.0 #dist=0: station included in the country shape
 ```
 
-5. Special attention : "units" vs "sovereignty/admin" ISO country code (ABMF example)
+5. Special attention: "units" vs "sovereignty/admin" ISO code
 
 ```python
 iso_unit = geo.get_attr(sta=abmf, dist=True, attr=["ISO_A3_EH"]) #default based on units ISO code
