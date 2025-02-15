@@ -147,7 +147,7 @@ abmf = Station(-61.528,16.262, name='ABMF')
 iso = geo.get_iso(sta=sta, dist=True) #dist method: most efficient & less time consuming
 print(f"{sta.name}: {iso}") #only ISO code as str
 
-# dataframe with desired attibutes from shapefile table
+# dataframe with desired attributes from shapefile table
 iso_df = geo.get_attr(sta=abmf, attr=['NAME_LONG','ISO_A3_EH'],  get_dist=True) #ISO_A3_EH default used as ISO units code, get_dist get distance btw station & country shape
 print(f"{abmf.name} ({abmf.lon}, {abmf.lat}) : '{iso_df['ISO_A3_EH']}' --> {iso_df['NAME_LONG']}; dist({abmf.name}-{iso_df['ISO_A3_EH']})={iso_df['dist']}")
 ```
