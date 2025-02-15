@@ -56,7 +56,7 @@ Now you can import gnss2iso in your python script !
 from gnss2iso import Station, GeographicShp
 ```
 
-<h2 id="project">📖 Project contain</h2>
+<h2 id="project">📖 Project content</h2>
 
 **Examples and simple use cases are provided in the** [examples folder](https://github.com/JulienB17/gnss2iso/tree/master/examples).
 
