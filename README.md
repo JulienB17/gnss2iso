@@ -73,7 +73,7 @@ This class provides geographic tools, primarily for retrieving the **ISO country
     
     Several options are available to search for an ISO code with get_iso() & get_att() methods:
         * if dist=True:    returns the ISO code of the nearest country, whatever the distance; it always returns an ISO code [default]
-        * elseif buffer>0: returns the ISO code the nearest country within a circle centered on the station and with Radius = buffer [unit depends on shapefile epsg: degree or meter]
+        * elif buffer>0:   returns the ISO code the nearest country intersecting a circle centered on the station and with Radius = buffer (float) [unit depends on shapefile epsg: degree or meter]
                            or '000' if no polygon is intersected by the circle
         * else:            returns the ISO code of the polygon containing the station
                            or '000' if no polygon includes the station
