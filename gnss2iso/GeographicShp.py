@@ -24,7 +24,7 @@ class GeographicShp:
     
     Several methods available to find ISO code (see self.get_iso & self.get_att methods)
         * dist=True: based on distance btw Station & Polygon --> always iso code provided [default method]
-        * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: degree or meter]--> countries not found '000'
+        * buffer (float): station is not a point but a circle (centered on point) with Radius = buffer [unit depends on shapefile epsg: here 4326= degree] --> possibly country not found '000'. Default buffer=0 (i.e. no buffer)
         * else: basic station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
         
     """    
@@ -138,7 +138,7 @@ class GeographicShp:
             
         Several methods available to find ISO code (see self.get_iso & self.get_att methods)
             * dist=True: based on distance btw Station & Polygon --> always iso code provided [default method]
-            * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: degree or meter] --> countries not found '000'
+            * buffer (float): station is not a point but a circle (centered on point) with Radius = buffer [unit depends on shapefile epsg: here 4326= degree] --> possibly country not found '000'. Default buffer=0 (i.e. no buffer)
             * else: basic station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
             
         if dist & get_dist : return distance between station & shape with ISO code 
@@ -160,7 +160,7 @@ class GeographicShp:
         attr : list of str, optional
             attribute(s) of interest in the shapefile (i.e. in self.gdf). The default is 'ISO_A3_EH'.
         buffer: float
-            Add a distance buffer (degree unit) around station (1 degree <> 100 km). Default 0.
+            Add a distance buffer (degree unit) around station (1 degree <> 100 km). Default 0 (i.e. no buffer).
         dist: bool
             Select country with distance method: get country with min distance btw (point & polygon). distance=0 if point include
         get_dist: bool
@@ -234,7 +234,7 @@ class GeographicShp:
             
         Several methods available to find ISO code (see self.get_iso & self.get_att methods)
             * dist=True: based on distance btw Station & Polygon --> always iso code provided [default method]
-            * buffer=True: station is a circle with Radius = buffer [unit depends on shapefile epsg: degree or meter]--> countries not found '000'
+            * buffer (float): station is not a point but a circle (centered on point) with Radius = buffer [unit depends on shapefile epsg: here 4326= degree] --> possibly country not found '000'. Default buffer=0 (i.e. no buffer)
             * else: basic station.point included on polygon --> countries not found '000' (most accurate according to shapefile data)
             
         if dist & get_dist : return distance between station & shape with ISO code 
@@ -256,7 +256,7 @@ class GeographicShp:
         attr : list of str, optional
             attribute(s) of interest in the shapefile (i.e. in self.gdf). The default is 'ISO_A3_EH'.
         buffer: float
-            Add a distance buffer (degree unit) around station (1 degree <> 100 km). Default 0.
+            Add a distance buffer (degree unit) around station (1 degree <> 100 km). Default 0 (i.e. no buffer)
         dist: bool
             Select country with distance method: get country with min distance btw (point & polygon). distance=0 if point include
         get_dist: bool
